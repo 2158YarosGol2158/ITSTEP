@@ -18,6 +18,10 @@ class Pupils:
         Pupils.count+=1
     def __str__(self):
         print("Ім'я учасника: ",self.name, " Зріст: ", self.height)
+    def __bool__(self):
+        return self.name != None
+    def __len__(self):
+        return self.height
 
 pl1=Pupils("Ігор",155)
 pl1.__str__()
@@ -26,3 +30,5 @@ pl2.__str__()
 pl3=Pupils("Кіра",163)
 pl3.__str__()
 print(pl1.count, " учасника змагань")
+print(pl1.__bool__())
+print(len(pl3))
