@@ -45,3 +45,64 @@
 # num=int(input("Введіть суму покупки: "))
 # for k in buy:
 #     print(k.process(num))
+# class Dog:
+#     def __init__(self,name):
+#         self.name=name
+#
+# #public
+
+
+# dog1=Dog("Бані")
+# print(dog1.name)
+#
+# #private
+#
+# class Dog:
+#     def __init__(self,name):
+#         self.name=name
+#         self.__age=2
+#     def info(self):
+#         return self.__age
+#
+# dog1=Dog("Бані")
+# print(dog1.info())
+#
+# #protected
+
+# class Dog:
+#     def __init__(self,name):
+#         self.name=name
+#         self.__age=2
+#         self._breed="бульдог"
+#
+# class D(Dog):
+#     def info(self):
+#         return  "Це щеня породи "+self._breed
+#
+# dog1=D("Бані")
+# print(dog1.info())
+
+class Person():
+    def __init__(self,name,age,salary):
+        self.name=name
+        self._age=age
+        self.__salary=salary
+
+    def info(self):
+        print("Мене звати",self.name)
+        self._infoAge()
+        self.__infoSalary()
+
+    def _infoAge(self):
+        print("Мій вік", self._age)
+    def __infoSalary(self):
+        print("Моя зп", self.__salary)
+
+class Employee(Person):
+    def __init__(self,name,age,salary,pos):
+        super().__init__(name,age,salary)
+        self.pos=pos
+    def printInfo(self):
+        print("Моя посада",self.pos)
+        print("Мій вік",self._age)
+        print("Моя ЗП", self.__salary)
