@@ -151,3 +151,81 @@ class Mage(Character):
     def attack(self,num):
         print(self.__name+" атакує магією")
         num.take_degame(r.randint(20,26))
+
+# Завдання 2
+
+class LibraryItem:
+    def __init__(self, title, author, item_id):
+        self.__title = title
+        self.__author = author
+        self.__item_id = item_id
+        self.__is_taken = False
+
+    def get_title(self):
+        return self.__title
+
+    def get_author(self):
+        return self.__author
+
+    def get_item_id(self):
+        return self.__item_id
+
+    def is_same_item(self, other_item):
+        return self.__item_id == other_item.get_item_id()
+
+    def display_info(self):
+        pass
+
+    def take_item(self):
+        if self.__is_taken:
+            print(f"Матеріал '{self.__title}' вже взятий.")
+        else:
+            self.__is_taken = True
+            print(f"Ви взяли '{self.__title}'.")
+
+    def return_item(self):
+        if self.__is_taken:
+            self.__is_taken = False
+            print(f"Ви повернули '{self.__title}'.")
+        else:
+            print(f"Матеріал '{self.__title}' вже знаходиться в бібліотеці.")
+
+class Book(LibraryItem):
+    def __init__(self, title, author, item_id, pages):
+        super().__init__(title, author, item_id)
+        self.__pages = pages
+
+    def display_info(self):
+        print(f"Книга: {self.get_title()}, Автор: {self.get_author()}, Сторінки: {self.__pages}")
+
+class Magazine(LibraryItem):
+    def __init__(self, title, author, item_id, issue_number):
+        super().__init__(title, author, item_id)
+        self.__issue_number = issue_number
+
+    def display_info(self):
+        print(f"Журнал: {self.get_title()}, Автор: {self.get_author()}, Номер випуску: {self.__issue_number}")
+
+class Audiobook(LibraryItem):
+    def __init__(self, title, author, item_id, duration):
+        super().__init__(title, author, item_id)
+        self.__duration = duration
+
+    def display_info(self):
+        print(f"Аудіокнига: {self.get_title()}, Автор: {self.get_author()}, Тривалість: {self.__duration} хвилин")
+
+library = [
+    Book("Майстер і Маргарита", "Булгаков", 1, 320),
+    Magazine("Наука і життя", "Редакція", 2, 202),
+    Audiobook("1984", "Джордж Орвелл", 3, 670)
+]
+
+for item in library:
+    item.display_info()
+    item.take_item()
+    item.return_item()
+    print("---")
+
+b1 = Book("Майстер і Маргарита", "Булгаков", 1, 320)
+b2 = Book("Щось інше", "Інший автор", 1, 150)
+print("Це той самий об’єкт за ID?", b1.is_same_item(b2))
